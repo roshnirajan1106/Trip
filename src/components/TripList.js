@@ -1,21 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState,useCallback } from 'react';
 import { useEffect } from 'react';
 import  './TripList.css'
-
+import {useFetch} from '../hooks/useFetch';
+import Loading from './Loading';
 const TripList = () => {
-const[trips, setTrips] = useState([]);
+
 const[url ,setUrl] = useState('http://localhost:8000/trips');
-  useEffect(() =>{
-    fetch(url)
-    .then(res=>(res.json()))
-    .then((data) => setTrips(data));
-  },[url])
-  
+ const{data,loading,error}=  useFetch(url,{type:'GET'});
+    
   
   return <div className='trip-list'> 
       <h2>Trip List </h2>
       <ul>
-          {trips && trips.map((trip)=>(
+
+          {loading && <Loading/>}  
+          {error && <h2>{error}</h2>}
+          {data && data.map((trip)=>(
               <li key={trip.id}>
                   <h3>{trip.title}</h3>
                   <p>{trip.price}</p>
