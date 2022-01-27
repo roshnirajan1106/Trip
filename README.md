@@ -1,5 +1,5 @@
 Learning JSON server
-1. First of all set the root propertyand we can have multiple root property for differnt resources
+1. First of all set the root property and we can have multiple root property for different resources
 2. All json data inside strings
 3. each resource ,diffrent api endpoint.
 4. How to setup a json server via command line
